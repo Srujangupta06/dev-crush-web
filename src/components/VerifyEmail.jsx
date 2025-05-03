@@ -21,9 +21,13 @@ const VerifyEmail = () => {
 
     const verifyUserEmail = async () => {
       try {
-        const res = await axios.post(`${BASE_URL}/auth/verify-email`, {
-          token,
-        });
+        const res = await axios.post(
+          `${BASE_URL}/auth/verify-email`,
+          {
+            token,
+          },
+          { withCredentials: true }
+        );
         toast.success(res.data.message);
         dispatch(addUser(res?.data?.data));
         setTimeout(() => navigate("/profile"), 3000);
@@ -37,7 +41,7 @@ const VerifyEmail = () => {
       verifyUserEmail();
     } else {
       toast.error("Invalid or missing token");
-     navigate("/auth/login")
+      navigate("/auth/login");
     }
   }, [searchParams, navigate, dispatch]);
 
