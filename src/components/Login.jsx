@@ -32,7 +32,6 @@ const Login = () => {
         userCredentials,
         { withCredentials: true }
       );
-
       dispatch(addUser(response.data.data));
       toast.success("Login Successfull", {
         duration: 2000,

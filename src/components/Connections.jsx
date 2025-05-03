@@ -9,8 +9,7 @@ const Connections = () => {
   const connections = useSelector((store) => store.connections);
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false);
-
+const [isLoading, setIsLoading] = useState(false);
   const fetchConnections = async () => {
     try {
       setIsLoading(true);
@@ -20,7 +19,7 @@ const Connections = () => {
       dispatch(addConnection(response.data.data));
       setIsLoading(false);
     } catch (err) {
-      toast.error(err?.response?.data?.message || "Something Went Wrong");
+      console.error(err);
       setIsLoading(false);
     }
   };
@@ -28,12 +27,11 @@ const Connections = () => {
   useEffect(() => {
     fetchConnections();
   }, []);
-  if (!connections) return;
-  if (isLoading) {
+  if (!connections || isLoading)
     return (
       <div className="px-4 md:px-16 py-6 min-h-screen flex flex-col items-center">
         <div className="flex flex-col gap-6 w-full md:w-[80%] lg:w-[60%]">
-          {[...Array(3)].map((_, index) => (
+          {[...Array(3)].map((index) => (
             <div
               key={index}
               className="flex flex-col md:flex-row items-center md:items-start gap-4 w-full bg-white p-6 rounded-md shadow-md animate-pulse"
@@ -49,7 +47,7 @@ const Connections = () => {
         </div>
       </div>
     );
-  }
+  
 
   if (connections.length === 0) {
     return (
