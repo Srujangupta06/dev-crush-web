@@ -197,7 +197,7 @@ const SignUp = () => {
             </div>
           </div>
           {errorMessage && (
-            <p className="text-red-700 text-sm mb-2">*{errorMessage}</p>
+            <p className="text-red-700 text-sm mb-2">Error: {errorMessage}</p>
           )}
           <div className="flex justify-between items-center">
             <Link to="/auth/login" className="underline text-[#BF5CC9]">

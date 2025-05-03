@@ -17,6 +17,7 @@ const Header = () => {
         withCredentials: true,
       });
       dispatch(addUser(response.data));
+      console.log(response.data);
     } catch (err) {
       console.error(err);
     }
